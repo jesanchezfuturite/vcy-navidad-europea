@@ -1,0 +1,70 @@
+---
+const experiences = [
+  {
+    title: "Caminar bajo las luces navideñas de Londres.",
+    description: "Siente la magia de Regent Street y Oxford Street iluminadas por millones de destellos festivos.",
+    img: "https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    title: "Cruzar el Canal de la Mancha en Ferry al atardecer.",
+    description: "Una travesía única uniendo las costas del Reino Unido y Francia con vistas panorámicas inolvidables.",
+    img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    title: "Celebrar la Nochebuena con una cena en París.",
+    description: "Una experiencia gastronómica de 3 tiempos en el corazón de la ciudad más romántica del mundo.",
+    img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    title: "Subir a los Alpes suizos en teleférico giratorio.",
+    description: "Vistas de 360 grados de la nieve eterna mientras asciendes a la cima del Monte Titlis.",
+    img: "https://images.unsplash.com/photo-1531310197839-ccf54634509e?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    title: "Pisar el Coliseo Romano y pedir un deseo en la Fontana de Trevi.",
+    description: "Cierra el año rodeado de historia milenaria y la energía vibrante de la Ciudad Eterna.",
+    img: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&q=80&w=800"
+  }
+];
+---
+<section class="py-24 bg-white overflow-hidden">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-16 text-gray-900 tracking-tight">
+      NO SE TRATA SOLO DE CONOCER EUROPA, <span class="text-emerald-700">SE TRATA DE:</span>
+    </h2>
+
+    <div class="space-y-24">
+      {experiences.map((exp, index) => (
+        <div class={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-20`}>
+          <!-- Text Content -->
+          <div class="w-full lg:w-1/2 space-y-6">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xl mb-4">
+              {index + 1}
+            </div>
+            <h3 class="text-2xl md:text-4xl font-bold text-gray-900 leading-snug">
+              {exp.title}
+            </h3>
+            <p class="text-xl text-gray-600 leading-relaxed">
+              {exp.description}
+            </p>
+          </div>
+          
+          <!-- Image Placeholder -->
+          <div class="w-full lg:w-1/2">
+            <div class="relative group">
+              <div class="absolute -inset-4 bg-emerald-100 rounded-2xl transform rotate-2 transition-transform group-hover:rotate-1"></div>
+              <div class="relative overflow-hidden rounded-xl shadow-2xl bg-gray-200 aspect-video flex items-center justify-center">
+                <img 
+                  src={exp.img} 
+                  alt={exp.title} 
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,50 @@
+---
+const moments = [
+  {
+    title: "La Nochebuena de tus sueños",
+    desc: "Cena tres tiempos en un restaurante de París. Tu lugar está garantizado para vivir una Navidad mágica sin preocuparte por la disponibilidad.",
+    img: "https://images.unsplash.com/photo-1481391243133-f96216dcb5d2?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    title: "Adrenalina y nieve en la cima de Europa",
+    desc: "Sube al teleférico giratorio Rotair y cruza el puente colgante en el Monte Titlis. Una impactante experiencia en nieve eterna (opcional).",
+    img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    title: "Un viaje en el tiempo por el Imperio Romano",
+    desc: "Recorre el Coliseo y los Foros Imperiales con guía en español, y visita la Fontana de Trevi. Descubre 2,000 años de historia aprovechando cada rincón.",
+    img: "https://images.unsplash.com/photo-1529260830199-42c24126f198?auto=format&fit=crop&q=80&w=600"
+  }
+];
+---
+<section class="py-24 bg-white">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-16 text-gray-900">
+      LOS MOMENTOS QUE RECORDARÁS PARA SIEMPRE
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {moments.map(moment => (
+        <div class="group bg-white rounded-3xl overflow-hidden shadow-xl border border-gray-100 flex flex-col h-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+          <div class="h-80 overflow-hidden relative">
+            <img 
+              src={moment.img} 
+              alt={moment.title} 
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          </div>
+          <div class="p-8 flex flex-col flex-grow">
+            <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-emerald-700 transition-colors">
+              {moment.title}
+            </h3>
+            <p class="text-gray-600 leading-relaxed text-lg">
+              {moment.desc}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

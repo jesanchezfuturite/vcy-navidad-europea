@@ -1,0 +1,69 @@
+---
+const faqs = [
+  { 
+    q: "¿Necesito visa?", 
+    a: "Para ciudadanos mexicanos, no se requiere visa para ingresar al Espacio Schengen ni al Reino Unido por turismo. Sin embargo, a partir de 2025/2026, será necesario tramitar el permiso ETIAS para Europa y la ETA para el Reino Unido (costo aproximado $500 MXN)." 
+  },
+  { 
+    q: "¿Qué incluye el precio?", 
+    a: "Incluye vuelos redondos, hospedaje de 17 noches, desayunos diarios, traslados en autobús privado, guía en español, cena de Nochebuena en París y el ferry por el Canal de la Mancha." 
+  },
+  { 
+    q: "¿Puedo pagar en parcialidades?", 
+    a: "¡Sí! Una vez que apartas con $5,500 MXN, puedes ir realizando pagos mensuales flexibles. El viaje debe estar liquidado 45 días antes de la salida." 
+  },
+  { 
+    q: "¿Qué documentos necesito?", 
+    a: "Pasaporte vigente con al menos 6 meses de validez a partir de la fecha de regreso, ETIAS (Europa) y ETA (Reino Unido)." 
+  },
+  { 
+    q: "¿Puedo viajar solo?", 
+    a: "¡Claro! El viaje es ideal para conocer gente. Si no tienes acompañante, puedes elegir habitación individual (con costo adicional) o podemos intentar asignarte un compañero del mismo sexo si hay disponibilidad." 
+  },
+  { 
+    q: "¿Qué pasa si quiero habitación individual?", 
+    a: "Existe un suplemento de habitación individual para quienes prefieren privacidad total. Consulta el costo exacto con tu asesor." 
+  },
+  { 
+    q: "¿Qué excursiones son opcionales?", 
+    a: "Actividades como la subida al Monte Titlis, los Museos Vaticanos, Versalles o el crucero por el Sena son opcionales para que cada viajero personalice su experiencia." 
+  },
+  { 
+    q: "¿Cuánto equipaje puedo llevar?", 
+    a: "La tarifa incluye una maleta documentada de hasta 23kg y una pieza de mano de 10kg." 
+  }
+];
+---
+<section class="py-24 bg-white">
+  <div class="container mx-auto px-6 max-w-4xl">
+    <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-16 text-gray-900">
+      PREGUNTAS FRECUENTES
+    </h2>
+
+    <div class="space-y-4">
+      {faqs.map(faq => (
+        <details class="group bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden transition-all duration-300 open:bg-emerald-50 open:border-emerald-200">
+          <summary class="flex items-center justify-between p-6 cursor-pointer list-none focus:outline-none">
+            <h3 class="text-lg md:text-xl font-bold text-gray-800 group-open:text-emerald-800 transition-colors">
+              {faq.q}
+            </h3>
+            <span class="ml-4 flex-shrink-0 transition-transform duration-300 group-open:rotate-180">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </span>
+          </summary>
+          <div class="px-6 pb-6 text-gray-600 text-lg leading-relaxed">
+            {faq.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

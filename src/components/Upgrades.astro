@@ -1,0 +1,63 @@
+---
+const upgrades = [
+  { name: "Alpes Suizos (Monte Titlis)", price: "$3,090 MXN" },
+  { name: "Museos Vaticanos y Capilla Sixtina", price: "$2,020 MXN" },
+  { name: "Palacio de Versalles (Con guía y traslados)", price: "$2,020 MXN" }
+];
+
+const optionals = [
+  { name: "Nápoles y Pompeya (Día completo)", price: "$3,685 MXN" },
+  { name: "París Iluminado y Crucero por el Sena", price: "$1,650 MXN" },
+  { name: "Mónaco y Montecarlo de noche", price: "$1,650 MXN" },
+  { name: "Excursión a la histórica Toledo", price: "$1,650 MXN" },
+  { name: "Paseo en Góndola en Venecia", price: "$1,280 MXN" },
+  { name: "Montmartre y Barrio Latino", price: "$910 MXN" },
+  { name: "Roma Barroca (Fuentes y Plazas)", price: "$835 MXN" }
+];
+---
+<section class="py-24 bg-gray-50">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4">
+        HAZ TU VIAJE TODAVÍA MÁS TUYO
+      </h2>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        Estas experiencias no están incluidas en el paquete básico y requieren reserva anticipada.
+      </p>
+    </div>
+
+    <!-- Upgrades Premium -->
+    <div class="mb-20">
+      <h3 class="text-2xl font-bold text-emerald-800 mb-8 flex items-center gap-3">
+        <span class="w-8 h-1 bg-emerald-600"></span> Upgrades Premium
+      </h3>
+      <div class="grid md:grid-cols-3 gap-6">
+        {upgrades.map(item => (
+          <div class="p-6 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between hover:border-emerald-200 transition-colors">
+            <p class="font-bold text-gray-900 text-lg mb-4">{item.name}</p>
+            <p class="text-emerald-700 font-extrabold text-xl">{item.price}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Experiencias Opcionales -->
+    <div>
+      <h3 class="text-2xl font-bold text-gray-800 mb-8 flex items-center gap-3">
+        <span class="w-8 h-1 bg-gray-400"></span> Experiencias Opcionales
+      </h3>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {optionals.map(item => (
+          <div class="p-4 bg-white/60 rounded-xl border border-gray-100 flex justify-between items-center hover:bg-white transition-colors">
+            <p class="text-gray-700 font-medium text-sm pr-4">{item.name}</p>
+            <p class="text-gray-900 font-bold whitespace-nowrap text-sm">{item.price}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <p class="mt-12 text-sm text-gray-500 italic text-center">
+      Nota: Los precios en pesos son informativos y calculados bajo el tipo de cambio vigente al momento de su liquidación.
+    </p>
+  </div>
+</section>

@@ -1,0 +1,103 @@
+---
+const stops = [
+  {
+    city: "Londres",
+    desc: "Recorrido guiado por el Big Ben y el Parlamento. Tiempo libre para disfrutar los mercadillos navideños británicos.",
+    img: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    city: "Canal de la Mancha",
+    desc: "Cruce panorámico en Ferry desde Dover. Paisajes inolvidables uniendo Reino Unido y Francia.",
+    img: "https://images.unsplash.com/photo-1544084801-16ef23a632be?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    city: "París",
+    desc: "City tour por la Torre Eiffel y Campos Elíseos. Celebración de Nochebuena con cena tradicional incluida.",
+    img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    city: "Alpes y Suiza",
+    desc: "Paisajes de nieve eterna en Zúrich y Lucerna. Cruce por la Selva Negra y los paisajes más bellos de Europa Central.",
+    img: "https://images.unsplash.com/photo-1531310197839-ccf54634509e?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    city: "Roma",
+    desc: "Visita al Coliseo y Circo Máximo. Vive la magia del Año Nuevo en la Ciudad Eterna.",
+    img: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&q=80&w=800"
+  }
+];
+---
+<section class="py-24 bg-gray-900 text-white overflow-hidden">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-16">
+      TU ITINERARIO EN UNA SOLA MIRADA
+    </h2>
+
+    <div class="relative group">
+      <!-- Carousel Container -->
+      <div id="itinerary-carousel" class="flex overflow-x-auto snap-x snap-mandatory gap-6 no-scrollbar pb-8 scroll-smooth">
+        {stops.map((stop, index) => (
+          <div class="flex-none w-[85%] md:w-[45%] lg:w-[30%] snap-center">
+            <div class="bg-gray-800 rounded-3xl overflow-hidden border border-gray-700 h-full flex flex-col transition-all duration-300 hover:border-emerald-500/50 hover:shadow-2xl hover:shadow-emerald-900/20">
+              <div class="relative h-64">
+                <img src={stop.img} alt={stop.city} class="w-full h-full object-cover" loading="lazy" />
+                <div class="absolute top-4 left-4 bg-emerald-600 text-white px-4 py-1 rounded-full text-sm font-bold">
+                  Parada {index + 1}
+                </div>
+              </div>
+              <div class="p-8">
+                <h3 class="text-2xl font-bold mb-4 text-emerald-400">{stop.city}</h3>
+                <p class="text-gray-300 leading-relaxed text-lg">
+                  {stop.desc}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Navigation Arrows (Desktop) -->
+      <button 
+        id="prev-btn" 
+        class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 p-4 bg-emerald-600 rounded-full shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity hidden lg:block"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button 
+        id="next-btn" 
+        class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 p-4 bg-emerald-600 rounded-full shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity hidden lg:block"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
+<script>
+  const carousel = document.getElementById('itinerary-carousel');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+
+  if (carousel && prevBtn && nextBtn) {
+    prevBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: -400, behavior: 'smooth' });
+    });
+    nextBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: 400, behavior: 'smooth' });
+    });
+  }
+</script>

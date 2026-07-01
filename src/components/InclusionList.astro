@@ -1,0 +1,72 @@
+---
+const includes = [
+  "Vuelo redondo México – (con escala en Madrid) Londres / Madrid – México en clase turista.",
+  "17 noches de hotel (categoría seleccionada).",
+  "Desayunos diarios en todos los hoteles.",
+  "Traslados en autobús privado de turismo.",
+  "Guía acompañante en español toda la ruta.",
+  "Cena de Nochebuena en París (3 tiempos).",
+  "Ferry por el Canal de la Mancha."
+];
+
+const notIncludes = [
+  "Comidas y cenas no especificadas.",
+  "Upgrades Premium y excursiones opcionales.",
+  "Trámite ETA Reino Unido ($500 MXN aprox).",
+  "Propinas obligatorias (70 EUR total por persona).",
+  "Gastos personales y maleteros."
+];
+---
+<section class="py-24 bg-gray-50">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-16 text-gray-900">
+      LO QUE INCLUYE TU VIAJE
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-8 lg:gap-16">
+      <!-- ✅ Includes -->
+      <div class="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-emerald-100 relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-4 opacity-10">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 class="text-2xl font-bold text-emerald-800 mb-8 flex items-center gap-3">
+          <span class="p-2 bg-emerald-100 rounded-lg">✅</span> Lo que incluye
+        </h3>
+        <ul class="space-y-4">
+          {includes.map(item => (
+            <li class="flex items-start gap-4 text-gray-700 text-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- ❌ Not Includes -->
+      <div class="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-red-50 relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-4 opacity-10">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 class="text-2xl font-bold text-red-800 mb-8 flex items-center gap-3">
+          <span class="p-2 bg-red-100 rounded-lg">❌</span> No incluye
+        </h3>
+        <ul class="space-y-4">
+          {notIncludes.map(item => (
+            <li class="flex items-start gap-4 text-gray-700 text-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-400 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

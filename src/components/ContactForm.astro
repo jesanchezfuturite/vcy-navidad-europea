@@ -1,0 +1,141 @@
+---
+---
+<section id="ContactForm" class="py-24 bg-emerald-900 text-white relative overflow-hidden">
+  <!-- Decoration -->
+  <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-emerald-400 to-transparent opacity-30"></div>
+  <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-emerald-800 rounded-full blur-3xl opacity-20"></div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <!-- Banner de Urgencia/Cierre -->
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <span class="inline-block px-4 py-1 mb-6 text-xs font-bold tracking-widest uppercase bg-white/10 rounded-full border border-white/20">
+        SALIDA ÚNICA · CUPO LIMITADO
+      </span>
+      <h2 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+        ¡APARTA HOY TU LUGAR CON SOLO <span class="text-emerald-400">$5,500 MXN</span>!
+      </h2>
+      <p class="text-2xl font-bold mb-4">$69,900 MXN por persona (En habitación doble)</p>
+      <p class="text-xl opacity-80 max-w-2xl mx-auto leading-relaxed">
+        Aprovecha nuestro plan de pagos flexibles y asegura tu espacio antes de que se agoten los lugares para esta salida especial de temporada.
+      </p>
+    </div>
+
+    <!-- Form Container -->
+    <div class="max-w-2xl mx-auto bg-white rounded-[2rem] shadow-2xl p-8 md:p-12 text-gray-900 border border-white/20 relative">
+      <div class="text-center mb-10">
+        <h3 class="text-2xl md:text-3xl font-extrabold text-emerald-900 mb-2">
+          CONOCE CADA DETALLE DE TU VIAJE DÍA POR DÍA
+        </h3>
+        <p class="text-gray-600">
+          Completa el formulario para descargar el itinerario completo en PDF y asegurar la preventa de tu lugar.
+        </p>
+      </div>
+
+      <form id="lead-form" class="space-y-6">
+        <div class="space-y-2">
+          <label for="name" class="block text-sm font-bold text-gray-700 uppercase tracking-wider">Nombre Completo</label>
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            required 
+            placeholder="Ej. Juan Pérez"
+            class="w-full px-6 py-4 bg-gray-50 border-2 border-gray-100 rounded-xl focus:border-emerald-500 focus:outline-none transition-all placeholder:text-gray-400 font-medium"
+          />
+        </div>
+
+        <div class="space-y-2">
+          <label for="phone" class="block text-sm font-bold text-gray-700 uppercase tracking-wider">Teléfono / WhatsApp</label>
+          <input 
+            type="tel" 
+            id="phone" 
+            name="phone" 
+            required 
+            placeholder="Ej. +52 55 1234 5678"
+            class="w-full px-6 py-4 bg-gray-50 border-2 border-gray-100 rounded-xl focus:border-emerald-500 focus:outline-none transition-all placeholder:text-gray-400 font-medium"
+          />
+        </div>
+
+        <div class="space-y-2">
+          <label for="email" class="block text-sm font-bold text-gray-700 uppercase tracking-wider">Correo Electrónico</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            required 
+            placeholder="juan@ejemplo.com"
+            class="w-full px-6 py-4 bg-gray-50 border-2 border-gray-100 rounded-xl focus:border-emerald-500 focus:outline-none transition-all placeholder:text-gray-400 font-medium"
+          />
+        </div>
+
+        <button 
+          type="submit" 
+          id="submit-btn"
+          class="w-full py-5 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xl rounded-2xl shadow-xl shadow-emerald-200 transition-all transform hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Descargar itinerario PDF
+        </button>
+
+        <p id="form-message" class="text-center font-bold text-lg hidden"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('lead-form') as HTMLFormElement;
+  const btn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const message = document.getElementById('form-message');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Visual validation check
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    // UI Feedback
+    btn.disabled = true;
+    btn.innerText = 'Procesando...';
+    
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        if (message) {
+          message.innerText = "✅ ¡Registro exitoso! Tu descarga iniciará pronto.";
+          message.classList.remove('hidden', 'text-red-600');
+          message.classList.add('text-emerald-700');
+        }
+        form.reset();
+        btn.innerText = '¡Enviado!';
+        
+        // Simular descarga de PDF
+        setTimeout(() => {
+          alert("Iniciando descarga de Itinerario_Navidad_Europea_2026.pdf (Simulado)");
+        }, 1500);
+      } else {
+        throw new Error(result.message || 'Error desconocido');
+      }
+    } catch (err: any) {
+      if (message) {
+        message.innerText = `❌ Error: ${err.message}`;
+        message.classList.remove('hidden', 'text-emerald-700');
+        message.classList.add('text-red-600');
+      }
+      btn.disabled = false;
+      btn.innerText = 'Intentar de nuevo';
+    }
+  });
+</script>
