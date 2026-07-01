@@ -26,7 +26,7 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Official Brevo API Integration (Create Contact)
-    const response = await fetch('https://api.brevo.com/v3/contacts', {
+    const contactResponse = await fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
       headers: {
         'accept': 'application/json',
@@ -40,20 +40,51 @@ export const POST: APIRoute = async ({ request }) => {
           TELEFONO: phone,
           ORIGEN: 'Landing Navidad Europea 2026'
         },
-        listIds: [1], // Update with your actual list ID
+        listIds: [1],
         updateEnabled: true
       })
     });
 
-    if (response.ok) {
+    // Send Notification Email via Brevo SMTP
+    const emailResponse = await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'content-type': 'application/json',
+        'api-key': BREVO_API_KEY
+      },
+      body: JSON.stringify({
+        sender: { name: "Navidad Europea 2026", email: "noreply@futurite.info" },
+        to: [{ email: "dev@futurite.com", name: "Admin" }],
+        subject: "¡Nuevo Lead! - Navidad Europea 2026",
+        htmlContent: `
+          <html>
+            <body style="font-family: sans-serif; line-height: 1.6; color: #333;">
+              <div style="max-width: 600px; margin: 0 auto; border: 1px solid #eee; padding: 20px; border-radius: 10px;">
+                <h2 style="color: #065f46;">Nuevo registro en la Landing Page</h2>
+                <p>Se ha recibido un nuevo interesado para el viaje <strong>Navidad Europea 2026</strong>:</p>
+                <hr style="border: 0; border-top: 1px solid #eee;">
+                <p><strong>Nombre:</strong> ${name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Teléfono/WhatsApp:</strong> ${phone}</p>
+                <hr style="border: 0; border-top: 1px solid #eee;">
+                <p style="font-size: 12px; color: #999;">Este correo fue enviado automáticamente desde el formulario de la landing page.</p>
+              </div>
+            </body>
+          </html>
+        `
+      })
+    });
+
+    if (contactResponse.ok || emailResponse.ok) {
       return new Response(
         JSON.stringify({ message: '¡Gracias! Tu lugar ha sido pre-registrado.' }),
         { status: 200 }
       );
     } else {
-      const errorData = await response.json();
+      const errorData = await contactResponse.json();
       return new Response(
-        JSON.stringify({ message: 'Error en el servidor de correos.', details: errorData }),
+        JSON.stringify({ message: 'Error en el servidor de Brevo.', details: errorData }),
         { status: 500 }
       );
     }

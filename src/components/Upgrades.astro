@@ -1,18 +1,58 @@
 ---
 const upgrades = [
-  { name: "Alpes Suizos (Monte Titlis)", price: "$3,090 MXN" },
-  { name: "Museos Vaticanos y Capilla Sixtina", price: "$2,020 MXN" },
-  { name: "Palacio de Versalles (Con guía y traslados)", price: "$2,020 MXN" }
+  { 
+    name: "Alpes Suizos (Monte Titlis)", 
+    price: "$3,090 MXN",
+    img: "/images/monte-tilis.webp"
+  },
+  { 
+    name: "Museos Vaticanos y Capilla Sixtina", 
+    price: "$2,020 MXN",
+    img: "/images/capilla-sixtina.webp"
+  },
+  { 
+    name: "Palacio de Versalles (Con guía y traslados)", 
+    price: "$2,020 MXN",
+    img: "/images/palacio-versalles.webp"
+  }
 ];
 
 const optionals = [
-  { name: "Nápoles y Pompeya (Día completo)", price: "$3,685 MXN" },
-  { name: "París Iluminado y Crucero por el Sena", price: "$1,650 MXN" },
-  { name: "Mónaco y Montecarlo de noche", price: "$1,650 MXN" },
-  { name: "Excursión a la histórica Toledo", price: "$1,650 MXN" },
-  { name: "Paseo en Góndola en Venecia", price: "$1,280 MXN" },
-  { name: "Montmartre y Barrio Latino", price: "$910 MXN" },
-  { name: "Roma Barroca (Fuentes y Plazas)", price: "$835 MXN" }
+  { 
+    name: "Nápoles y Pompeya (Día completo)", 
+    price: "$3,685 MXN",
+    img: "/images/pompeya.webp"
+  },
+  { 
+    name: "París Iluminado y Crucero por el Sena", 
+    price: "$1,650 MXN",
+    img: "/images/crucero-cena.webp"
+  },
+  { 
+    name: "Mónaco y Montecarlo de noche", 
+    price: "$1,650 MXN",
+    img: "/images/montecarlo.webp"
+  },
+  { 
+    name: "Excursión a la histórica Toledo", 
+    price: "$1,650 MXN",
+    img: "/images/toledo.webp"
+  },
+  { 
+    name: "Paseo en Góndola en Venecia", 
+    price: "$1,280 MXN",
+    img: "/images/venecia.webp"
+  },
+  { 
+    name: "Montmartre y Barrio Latino", 
+    price: "$910 MXN",
+    img: "/images/montmartre.webp"
+  },
+  { 
+    name: "Roma Barroca (Fuentes y Plazas)", 
+    price: "$835 MXN",
+    img: "/images/roma-barroca.webp"
+  }
 ];
 ---
 <section class="py-24 bg-gray-50">
@@ -31,11 +71,21 @@ const optionals = [
       <h3 class="text-2xl font-bold text-emerald-800 mb-8 flex items-center gap-3">
         <span class="w-8 h-1 bg-emerald-600"></span> Upgrades Premium
       </h3>
-      <div class="grid md:grid-cols-3 gap-6">
+      <div class="grid md:grid-cols-3 gap-8">
         {upgrades.map(item => (
-          <div class="p-6 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between hover:border-emerald-200 transition-colors">
-            <p class="font-bold text-gray-900 text-lg mb-4">{item.name}</p>
-            <p class="text-emerald-700 font-extrabold text-xl">{item.price}</p>
+          <div class="group bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 flex flex-col transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+            <div class="h-48 overflow-hidden">
+              <img 
+                src={item.img} 
+                alt={item.name} 
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-6 flex flex-col justify-between flex-grow">
+              <p class="font-bold text-gray-900 text-lg mb-4 leading-tight">{item.name}</p>
+              <p class="text-emerald-700 font-extrabold text-xl">{item.price}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -46,11 +96,21 @@ const optionals = [
       <h3 class="text-2xl font-bold text-gray-800 mb-8 flex items-center gap-3">
         <span class="w-8 h-1 bg-gray-400"></span> Experiencias Opcionales
       </h3>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {optionals.map(item => (
-          <div class="p-4 bg-white/60 rounded-xl border border-gray-100 flex justify-between items-center hover:bg-white transition-colors">
-            <p class="text-gray-700 font-medium text-sm pr-4">{item.name}</p>
-            <p class="text-gray-900 font-bold whitespace-nowrap text-sm">{item.price}</p>
+          <div class="group bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <div class="h-32 overflow-hidden">
+              <img 
+                src={item.img} 
+                alt={item.name} 
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-4 flex flex-col justify-between flex-grow">
+              <p class="text-gray-800 font-bold text-sm mb-2 leading-tight">{item.name}</p>
+              <p class="text-gray-900 font-extrabold text-md">{item.price}</p>
+            </div>
           </div>
         ))}
       </div>
