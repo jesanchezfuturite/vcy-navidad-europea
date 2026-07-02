@@ -1,35 +1,35 @@
 ---
 const experiences = [
   {
-    title: "Caminar bajo las luces navideñas de Londres.",
+    title: "Caminar bajo las luces de Londres.",
     description: "Siente la magia de Regent Street y Oxford Street iluminadas por millones de destellos festivos.",
     img: "/images/caminar.webp"
   },
   {
     title: "Cruzar el Canal de la Mancha en Ferry al atardecer.",
-    description: "Una travesía única uniendo las costas del Reino Unido y Francia con vistas panorámicas inolvidables.",
+    description: "Una travesía panorámica inolvidable uniendo Reino Unido y Francia.",
     img: "/images/canal.webp"
   },
   {
     title: "Celebrar la Nochebuena con una cena en París.",
-    description: "Una experiencia gastronómica de 3 tiempos en el corazón de la ciudad más romántica del mundo.",
+    description: "Tu lugar está garantizado para vivir una Navidad mágica sin preocuparte por la disponibilidad.",
     img: "/images/cena.webp"
   },
   {
     title: "Subir a los Alpes suizos en teleférico giratorio.",
-    description: "Vistas de 360 grados de la nieve eterna mientras asciendes a la cima del Monte Titlis.",
+    description: "Sube al Rotair y cruza el puente colgante en el Monte Titlis con nieve eterna.",
     img: "/images/alpes.webp"
   },
   {
     title: "Pisar el Coliseo Romano y pedir un deseo en la Fontana de Trevi.",
-    description: "Cierra el año rodeado de historia milenaria y la energía vibrante de la Ciudad Eterna.",
-    img: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&q=80&w=800"
+    description: "Descubre 2,000 años de historia aprovechando cada rincón de la Ciudad Eterna.",
+    img: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=1000&auto=format&fit=crop"
   }
 ];
 ---
 <section class="py-24 bg-white overflow-hidden">
   <div class="container mx-auto px-6">
-    <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-16 text-gray-900 tracking-tight">
+    <h2 class="text-3xl md:text-5xl font-black text-center mb-16 text-gray-900 tracking-tight">
       NO SE TRATA SOLO DE CONOCER EUROPA, <span class="text-emerald-700">SE TRATA DE:</span>
     </h2>
 
@@ -37,8 +37,8 @@ const experiences = [
       {experiences.map((exp, index) => (
         <div class={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-20`}>
           <!-- Text Content -->
-          <div class="w-full lg:w-1/2 space-y-6">
-            <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xl mb-4">
+          <div class="w-full lg:w-1/2 space-y-6 text-center lg:text-left">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xl mb-4 mx-auto lg:mx-0">
               {index + 1}
             </div>
             <h3 class="text-2xl md:text-4xl font-bold text-gray-900 leading-snug">

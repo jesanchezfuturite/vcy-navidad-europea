@@ -1,58 +1,18 @@
 ---
 const upgrades = [
-  { 
-    name: "Alpes Suizos (Monte Titlis)", 
-    price: "$3,090 MXN",
-    img: "/images/monte-tilis.webp"
-  },
-  { 
-    name: "Museos Vaticanos y Capilla Sixtina", 
-    price: "$2,020 MXN",
-    img: "/images/capilla-sixtina.webp"
-  },
-  { 
-    name: "Palacio de Versalles (Con guía y traslados)", 
-    price: "$2,020 MXN",
-    img: "/images/palacio-versalles.webp"
-  }
+  { name: "Alpes Suizos (Monte Titlis)", price: "$3,090 MXN", img: "/images/monte-tilis.webp" },
+  { name: "Museos Vaticanos y Capilla Sixtina", price: "$2,020 MXN", img: "/images/capilla-sixtina.webp" },
+  { name: "Palacio de Versalles (Con guía y traslados)", price: "$2,020 MXN", img: "/images/palacio-versalles.webp" }
 ];
 
 const optionals = [
-  { 
-    name: "Nápoles y Pompeya (Día completo)", 
-    price: "$3,685 MXN",
-    img: "/images/pompeya.webp"
-  },
-  { 
-    name: "París Iluminado y Crucero por el Sena", 
-    price: "$1,650 MXN",
-    img: "/images/crucero-cena.webp"
-  },
-  { 
-    name: "Mónaco y Montecarlo de noche", 
-    price: "$1,650 MXN",
-    img: "/images/montecarlo.webp"
-  },
-  { 
-    name: "Excursión a la histórica Toledo", 
-    price: "$1,650 MXN",
-    img: "/images/toledo.webp"
-  },
-  { 
-    name: "Paseo en Góndola en Venecia", 
-    price: "$1,280 MXN",
-    img: "/images/venecia.webp"
-  },
-  { 
-    name: "Montmartre y Barrio Latino", 
-    price: "$910 MXN",
-    img: "/images/montmartre.webp"
-  },
-  { 
-    name: "Roma Barroca (Fuentes y Plazas)", 
-    price: "$835 MXN",
-    img: "/images/roma-barroca.webp"
-  }
+  { name: "Nápoles y Pompeya (Día completo)", price: "$3,685 MXN", img: "/images/pompeya.webp" },
+  { name: "París Iluminado y Crucero por el Sena", price: "$1,650 MXN", img: "/images/crucero-cena.webp" },
+  { name: "Mónaco y Montecarlo de noche", price: "$1,650 MXN", img: "/images/montecarlo.webp" },
+  { name: "Excursión a la histórica Toledo", price: "$1,650 MXN", img: "/images/toledo.webp" },
+  { name: "Paseo en Góndola en Venecia", price: "$1,280 MXN", img: "/images/venecia.webp" },
+  { name: "Montmartre y Barrio Latino", price: "$910 MXN", img: "/images/montmartre.webp" },
+  { name: "Roma Barroca (Fuentes y Plazas)", price: "$835 MXN", img: "/images/roma-barroca.webp" }
 ];
 ---
 <section class="py-24 bg-gray-50">
@@ -71,7 +31,7 @@ const optionals = [
       <h3 class="text-2xl font-bold text-emerald-800 mb-8 flex items-center gap-3">
         <span class="w-8 h-1 bg-emerald-600"></span> Upgrades Premium
       </h3>
-      <div class="grid md:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         {upgrades.map(item => (
           <div class="group bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 flex flex-col transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
             <div class="h-48 overflow-hidden">
@@ -96,7 +56,7 @@ const optionals = [
       <h3 class="text-2xl font-bold text-gray-800 mb-8 flex items-center gap-3">
         <span class="w-8 h-1 bg-gray-400"></span> Experiencias Opcionales
       </h3>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
         {optionals.map(item => (
           <div class="group bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
             <div class="h-32 overflow-hidden">
