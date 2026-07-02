@@ -55,7 +55,10 @@ export const POST: APIRoute = async ({ request }) => {
       },
       body: JSON.stringify({
         sender: { name: "Navidad Europea 2026", email: "noreply@futurite.info" },
-        to: [{ email: "dev@futurite.com", name: "Admin" }],
+        to: [
+          { email: "dev@futurite.com", name: "Dev" },
+          { email: "ventas@viajacomoyo.net", name: "Ventas" }
+        ],
         subject: "¡Nuevo Lead! - Navidad Europea 2026",
         htmlContent: `
           <html>

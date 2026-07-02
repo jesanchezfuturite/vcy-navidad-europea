@@ -121,9 +121,14 @@
         form.reset();
         btn.innerText = '¡Enviado!';
         
-        // Simular descarga de PDF
+        // Descarga real del PDF
         setTimeout(() => {
-          alert("Iniciando descarga de Itinerario_Navidad_Europea_2026.pdf (Simulado)");
+          const link = document.createElement('a');
+          link.href = '/pdf/navidad-europea-2026.pdf';
+          link.download = 'Itinerario_Navidad_Europea_2026.pdf';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
         }, 1500);
       } else {
         throw new Error(result.message || 'Error desconocido');
