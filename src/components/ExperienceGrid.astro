@@ -30,15 +30,20 @@ const experiences = [
 <section class="py-24 bg-white overflow-hidden">
   <div class="container mx-auto px-6">
     <h2 class="text-3xl md:text-5xl font-black text-center mb-16 text-gray-900 tracking-tight">
-      NO SE TRATA SOLO DE CONOCER EUROPA, <span class="text-emerald-700">SE TRATA DE:</span>
+      NO SE TRATA SOLO DE CONOCER EUROPA, <span class="text-green-700">SE TRATA DE:</span>
     </h2>
 
     <div class="space-y-24">
+      {/* 
+        TODO: Recordatorio para el equipo:
+        - Sustituir imagen de París por: Fotos específicas del cliente de la cena en París.
+        - Sustituir imagen del Coliseo por: Fotos del Coliseo con pirotecnia de Año Nuevo.
+      */}
       {experiences.map((exp, index) => (
         <div class={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-20`}>
           <!-- Text Content -->
           <div class="w-full lg:w-1/2 space-y-6 text-center lg:text-left">
-            <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xl mb-4 mx-auto lg:mx-0">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-green-100 text-green-700 font-bold text-xl mb-4 mx-auto lg:mx-0">
               {index + 1}
             </div>
             <h3 class="text-[1.2rem] md:text-[1.8rem] font-bold text-gray-900 leading-snug" set:html={exp.title}>
@@ -51,7 +56,7 @@ const experiences = [
           <!-- Image Placeholder -->
           <div class="w-full lg:w-1/2">
             <div class="relative group">
-              <div class="absolute -inset-4 bg-emerald-100 rounded-2xl transform rotate-2 transition-transform group-hover:rotate-1"></div>
+              <div class="absolute -inset-4 bg-green-50 rounded-2xl transform rotate-2 transition-transform group-hover:rotate-1"></div>
               <div class="relative overflow-hidden rounded-xl shadow-2xl bg-gray-200 aspect-video flex items-center justify-center">
                 <img 
                   src={exp.img} 

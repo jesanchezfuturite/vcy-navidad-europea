@@ -34,26 +34,26 @@ const faqs = [
   }
 ];
 ---
-<section class="py-24 bg-white">
+<section class="py-12 bg-white">
   <div class="container mx-auto px-6 max-w-4xl">
-    <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-16 text-gray-900">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-8 text-gray-900">
       PREGUNTAS FRECUENTES
     </h2>
 
     <div class="space-y-4">
       {faqs.map(faq => (
-        <details class="group bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden transition-all duration-300 open:bg-emerald-50 open:border-emerald-200">
-          <summary class="flex items-center justify-between p-6 cursor-pointer list-none focus:outline-none">
-            <h3 class="text-lg md:text-xl font-bold text-gray-800 group-open:text-emerald-800 transition-colors">
+        <details class="group bg-gray-50 rounded-xl border border-gray-100 overflow-hidden transition-all duration-300 open:bg-green-50 open:border-green-200">
+          <summary class="flex items-center justify-between p-4 cursor-pointer list-none focus:outline-none">
+            <h3 class="text-base md:text-lg font-bold text-gray-800 group-open:text-green-800 transition-colors">
               {faq.q}
             </h3>
             <span class="ml-4 flex-shrink-0 transition-transform duration-300 group-open:rotate-180">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </span>
           </summary>
-          <div class="px-6 pb-6 text-gray-600 text-lg leading-relaxed">
+          <div class="px-4 pb-4 text-gray-600 text-base leading-relaxed">
             {faq.a}
           </div>
         </details>
