@@ -6,7 +6,7 @@ const experiences = [
     img: "/images/caminar.webp"
   },
   {
-    title: "Cruzar el Canal de la Mancha en Ferry al atardecer.",
+    title: "Cruzar el Canal de la Mancha <br/> en Ferry al atardecer.",
     description: "Una travesía panorámica inolvidable uniendo Reino Unido y Francia.",
     img: "/images/canal.webp"
   },
@@ -41,8 +41,7 @@ const experiences = [
             <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xl mb-4 mx-auto lg:mx-0">
               {index + 1}
             </div>
-            <h3 class="text-2xl md:text-4xl font-bold text-gray-900 leading-snug">
-              {exp.title}
+            <h3 class="text-[1.2rem] md:text-[1.8rem] font-bold text-gray-900 leading-snug" set:html={exp.title}>
             </h3>
             <p class="text-xl text-gray-600 leading-relaxed">
               {exp.description}
