@@ -15,24 +15,32 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const BREVO_API_KEY = import.meta.env.BREVO_API_KEY;
+    const N8N_WEBHOOK_URL = import.meta.env.N8N_WEBHOOK_URL;
 
     if (!BREVO_API_KEY) {
-      console.warn('BREVO_API_KEY no configurada. Simulando éxito.');
-      // Simulate success for development
       return new Response(
-        JSON.stringify({ message: 'Lead recibido (Modo Simulación).' }),
-        { status: 200 }
+        JSON.stringify({ message: 'BREVO_API_KEY no configurada.' }),
+        { status: 500 }
       );
     }
 
+    if (!N8N_WEBHOOK_URL) {
+      return new Response(
+        JSON.stringify({ message: 'N8N_WEBHOOK_URL no configurada.' }),
+        { status: 500 }
+      );
+    }
+
+    const brevoHeaders = {
+      'accept': 'application/json',
+      'content-type': 'application/json',
+      'api-key': BREVO_API_KEY
+    };
+
     // Official Brevo API Integration (Create Contact)
-    const contactResponse = await fetch('https://api.brevo.com/v3/contacts', {
+    const contactRequest = fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
-      headers: {
-        'accept': 'application/json',
-        'content-type': 'application/json',
-        'api-key': BREVO_API_KEY
-      },
+      headers: brevoHeaders,
       body: JSON.stringify({
         email: email,
         attributes: {
@@ -46,13 +54,9 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     // Send Notification Email via Brevo SMTP
-    const emailResponse = await fetch('https://api.brevo.com/v3/smtp/email', {
+    const emailRequest = fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
-      headers: {
-        'accept': 'application/json',
-        'content-type': 'application/json',
-        'api-key': BREVO_API_KEY
-      },
+      headers: brevoHeaders,
       body: JSON.stringify({
         sender: { name: "Navidad Europea 2026", email: "noreply@futurite.info" },
         to: [
@@ -79,15 +83,37 @@ export const POST: APIRoute = async ({ request }) => {
       })
     });
 
-    if (contactResponse.ok || emailResponse.ok) {
+    const webhookRequest = fetch(N8N_WEBHOOK_URL, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        nombre: name,
+        telefono: phone,
+        correo: email,
+        origen: 'Navidad Europea'
+      })
+    });
+
+    const responses = await Promise.allSettled([
+      contactRequest,
+      emailRequest,
+      webhookRequest
+    ]);
+
+    const failedRequest = responses.find((response) => {
+      return response.status === 'rejected' || !response.value.ok;
+    });
+
+    if (!failedRequest) {
       return new Response(
         JSON.stringify({ message: '¡Gracias! Tu lugar ha sido pre-registrado.' }),
         { status: 200 }
       );
     } else {
-      const errorData = await contactResponse.json();
       return new Response(
-        JSON.stringify({ message: 'Error en el servidor de Brevo.', details: errorData }),
+        JSON.stringify({ message: 'No se pudieron completar todas las peticiones.' }),
         { status: 500 }
       );
     }

@@ -145,7 +145,7 @@
       }
     } catch (err: any) {
       if (message) {
-        message.innerText = `❌ Error: ${err.message}`;
+        message.innerText = 'No pudimos procesar tu solicitud. Por favor, intenta nuevamente.';
         message.classList.remove('hidden', 'text-emerald-700');
         message.classList.add('text-red-600');
       }
