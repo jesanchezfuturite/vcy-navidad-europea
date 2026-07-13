@@ -37,22 +37,6 @@ export const POST: APIRoute = async ({ request }) => {
       'api-key': BREVO_API_KEY
     };
 
-    // Official Brevo API Integration (Create Contact)
-    const contactRequest = fetch('https://api.brevo.com/v3/contacts', {
-      method: 'POST',
-      headers: brevoHeaders,
-      body: JSON.stringify({
-        email: email,
-        attributes: {
-          NOMBRE: name,
-          TELEFONO: phone,
-          ORIGEN: 'Landing Navidad Europea 2026'
-        },
-        listIds: [1],
-        updateEnabled: true
-      })
-    });
-
     // Send Notification Email via Brevo SMTP
     const emailRequest = fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
@@ -97,7 +81,6 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     const responses = await Promise.allSettled([
-      contactRequest,
       emailRequest,
       webhookRequest
     ]);
