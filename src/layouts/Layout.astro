@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
 
 interface Props {
 	title: string;
@@ -51,6 +52,7 @@ const { title, description = "Vive una Navidad mágica en Europa. 19 días recor
 	</head>
 	<body class="bg-white text-gray-900 font-sans antialiased">
 		<slot />
+		<WhatsAppButton />
 	</body>
 </html>
 
